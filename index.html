@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sarika Koppisetty — HCI / UX Research & Interaction Design Portfolio</title>
+  <meta name="description" content="Sarika Koppisetty — Human-Computer Interaction portfolio featuring UX research, AI-driven interaction design, AR navigation, usability testing, and prototyping." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="dark">
+  <!-- Sticky Nav -->
+  <header class="nav" aria-label="Top navigation">
+    <div class="nav-inner">
+      <div class="brand" aria-label="Brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div class="brand-text">
+          <h1>Sarika Koppisetty</h1>
+          <p>HCI • UX Research • Interaction Design</p>
+        </div>
+      </div>
+      <nav class="nav-links" aria-label="Section links">
+        <a class="chip" href="#projects">Projects</a>
+        <a class="chip" href="#skills">Skills</a>
+        <a class="chip" href="#experience">Experience</a>
+        <a class="chip" href="#education">Education</a>
+        <a class="chip" href="#contact">Contact</a>
+      </nav>
+      <div class="actions">
+        <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle theme">
+          <span class="dot" aria-hidden="true"></span>
+          <span id="themeLabel">Dark</span>
+        </button>
+        <button class="btn primary" id="copyEmailBtn" type="button" aria-label="Copy email">
+          Copy Email
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <!-- Hero -->
+    <div class="hero" id="top">
+      <div class="card hero-main">
+        <div class="kicker">
+          <span aria-hidden="true">✨</span>
+          <span><b>Graduate Student</b> • M.S. Human Computer Interaction • Iowa State University</span>
+        </div>
+        <h2>Designing trustworthy, accessible experiences for AI + immersive products.</h2>
+        <p>
+          I specialize in <b>UX research</b>, <b>AI-driven interaction design</b>, and <b>human factors</b>.
+          I use usability testing, heuristic evaluation, and qualitative analysis to turn user insights into
+          clean, high-impact prototypes—especially for AR/VR and safety-critical workflows.
+        </p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+          <button class="btn" type="button" id="openResumeBtn">Resume Highlights</button>
+        </div>
+        <div class="meta-row" aria-label="Quick details">
+          <div class="meta-item"><span aria-hidden="true">📍</span> Ames, Iowa</div>
+          <div class="meta-item"><span aria-hidden="true">📧</span> sarika02@iastate.edu</div>
+          <a class="meta-item" href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">
+            <span aria-hidden="true">🔗</span> linkedin.com/in/sarika02
+          </a>
+        </div>
+      </div>
+      <aside class="hero-side" aria-label="Highlights">
+        <div class="mini">
+          <h3>Impact</h3>
+          <div class="stat">
+            <b>20%</b><span>improvement in user engagement (AI-driven apps)</span>
+          </div>
+          <p>Research → insights → iterative prototypes → measurable UX improvements.</p>
+        </div>
+        <div class="mini">
+          <h3>Strengths</h3>
+          <p>Usability Testing • Thematic Coding • Affinity Mapping • IA • Accessibility (WCAG AA)</p>
+        </div>
+        <div class="mini">
+          <h3>Focus Areas</h3>
+          <p>AR Navigation • Safety & Privacy UX • Metacognitive Study Tools • Explainable AI UX</p>
+        </div>
+      </aside>
+    </div>
+    <!-- Projects -->
+    <section id="projects" class="card" aria-label="Projects">
+      <div class="tools">
+        <div>
+          <div class="section-head m-0">
+            <div>
+              <h3>Selected Projects</h3>
+              <p>Filter by type and open any project for full details.</p>
+            </div>
+          </div>
+        </div>
+        <div class="search" aria-label="Project search and filters">
+          <div class="input" role="search">
+            <span aria-hidden="true">🔎</span>
+            <input id="searchBox" type="search" placeholder="Search projects (e.g., AR, usability, safety, AI)" />
+          </div>
+          <div class="filters" aria-label="Filters">
+            <button class="pill on" data-filter="all" type="button">All</button>
+            <button class="pill" data-filter="arvr" type="button">AR/VR</button>
+            <button class="pill" data-filter="research" type="button">Research</button>
+            <button class="pill" data-filter="prototype" type="button">Prototyping</button>
+            <button class="pill" data-filter="accessibility" type="button">Accessibility</button>
+            <button class="pill" data-filter="privacy" type="button">Safety/Privacy</button>
+          </div>
+        </div>
+      </div>
+      <div class="proj-grid" id="projectGrid"></div>
+    </section>
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-head">
+        <div>
+          <h3>Skills</h3>
+          <p>Tools + methods I use to ship user-centered, research-backed designs.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card skill-box">
+          <h4>UX Design & Prototyping</h4>
+          <div class="tags">
+            <span class="tag">Figma</span>
+            <span class="tag">Adobe XD</span>
+            <span class="tag">Framer</span>
+            <span class="tag">ProtoPie</span>
+            <span class="tag">Sketch</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">Canva</span>
+            <span class="tag">Component-based Design Systems</span>
+            <span class="tag">Information Architecture</span>
+            <span class="tag">Data Visualization</span>
+          </div>
+        </div>
+        <div class="card skill-box">
+          <h4>Research Methods</h4>
+          <div class="tags">
+            <span class="tag">Usability Testing</span>
+            <span class="tag">Heuristic Evaluation</span>
+            <span class="tag">Semi-Structured Interviews</span>
+            <span class="tag">Thematic Coding</span>
+            <span class="tag">Affinity Mapping</span>
+            <span class="tag">Ethnographic Research</span>
+            <span class="tag">Persona Development</span>
+            <span class="tag">Journey Mapping</span>
+            <span class="tag">A/B Testing</span>
+          </div>
+        </div>
+        <div class="card skill-box">
+          <h4>AR/VR & Interaction Tech</h4>
+          <div class="tags">
+            <span class="tag">Unity</span>
+            <span class="tag">ARCore</span>
+            <span class="tag">Niantic Lightship ARDK</span>
+            <span class="tag">World Positioning System (WPS)</span>
+            <span class="tag">Spatial Anchors</span>
+            <span class="tag">Immersive UX</span>
+          </div>
+        </div>
+        <div class="card skill-box">
+          <h4>Programming & Development</h4>
+          <div class="tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Java</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Agile/Scrum Collaboration</span>
+            <span class="tag">Unit Testing</span>
+          </div>
+        </div>
+        <div class="card skill-box">
+          <h4>Accessibility</h4>
+          <div class="tags">
+            <span class="tag">WCAG AA</span>
+            <span class="tag">Color Contrast</span>
+            <span class="tag">Readable Typography</span>
+            <span class="tag">Keyboard Navigation</span>
+            <span class="tag">Clear IA & Labels</span>
+          </div>
+        </div>
+        <div class="card skill-box">
+          <h4>AI-Driven UX</h4>
+          <div class="tags">
+            <span class="tag">Explainable AI UX</span>
+            <span class="tag">Behavioral Research</span>
+            <span class="tag">Data-driven Iteration</span>
+            <span class="tag">Human-AI Interaction</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Experience -->
+    <section id="experience" class="card" aria-label="Professional experience">
+      <div class="section-head pt-head">
+        <div>
+          <h3>Professional Experience</h3>
+          <p>Building usable software + analytics with a user-centered mindset.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="row">
+          <div class="row-head">
+            <div>
+              <h4>Python Developer — Wipro</h4>
+              <div class="sub">Telangana, India</div>
+            </div>
+            <div class="muted">Jun 2023 – Jul 2024</div>
+          </div>
+          <ul>
+            <li>Developed interactive software applications using Python with focus on usability, accessibility, and user-centered design.</li>
+            <li>Optimized user interactions and conducted unit testing to enhance performance and engagement.</li>
+            <li>Collaborated in Agile teams across the full development lifecycle: requirements → build → deployment.</li>
+          </ul>
+        </div>
+        <div class="row">
+          <div class="row-head">
+            <div>
+              <h4>Data Analysis Intern — Origin Tech</h4>
+              <div class="sub">Telangana, India</div>
+            </div>
+            <div class="muted">Feb 2022 – Apr 2022</div>
+          </div>
+          <ul>
+            <li>Analyzed IoT sensor data from Raspberry Pi systems using AI/ML techniques to identify patterns and insights.</li>
+            <li>Built data visualization dashboards to support predictions and data-driven decisions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- Education -->
+    <section id="education" class="card" aria-label="Education">
+      <div class="section-head pt-head">
+        <div>
+          <h3>Education</h3>
+          <p>Academic focus in Human-Computer Interaction and engineering foundation.</p>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="row">
+          <div class="row-head">
+            <div>
+              <h4>Iowa State University</h4>
+              <div class="sub">Master of Science in Human Computer Interaction • GPA: 4.0/4.0</div>
+            </div>
+            <div class="muted">Aug 2024 – Aug 2026</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-head">
+            <div>
+              <h4>Matrusri Engineering College</h4>
+              <div class="sub">Bachelor of Engineering in Electronics and Communication</div>
+            </div>
+            <div class="muted">Aug 2019 – Jun 2023</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact -->
+    <section id="contact" class="card" aria-label="Contact">
+      <div class="section-head pt-head">
+        <div>
+          <h3>Contact</h3>
+          <p>Want to collaborate or discuss a role? Send a message.</p>
+        </div>
+      </div>
+      <div class="p-body">
+        <div class="grid-2">
+          <div class="row m-0">
+            <div class="row-head">
+              <div>
+                <h4>Email</h4>
+                <div class="sub"><a href="mailto:sarika02@iastate.edu">sarika02@iastate.edu</a></div>
+              </div>
+              <button class="btn" type="button" id="copyEmailBtn2">Copy</button>
+            </div>
+          </div>
+          <div class="row m-0">
+            <div class="row-head">
+              <div>
+                <h4>LinkedIn</h4>
+                <div class="sub"><a href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">linkedin.com/in/sarika02</a></div>
+              </div>
+              <a class="btn" href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">Open</a>
+            </div>
+          </div>
+        </div>
+        <form class="row m-0" id="contactForm">
+          <div class="row-head">
+            <div>
+              <h4>Quick Message</h4>
+              <div class="sub">This opens your email client with a pre-filled draft.</div>
+            </div>
+            <button class="btn primary" type="submit">Create Email Draft</button>
+          </div>
+          <div class="contact-grid">
+            <div class="grid-2">
+              <label class="form-group">
+                <b>Your Name</b>
+                <input id="fromName" class="form-input" required placeholder="Ex: Hiring Manager">
+              </label>
+              <label class="form-group">
+                <b>Your Email (optional)</b>
+                <input id="fromEmail" class="form-input" placeholder="Ex: name@company.com">
+              </label>
+            </div>
+            <label class="form-group">
+              <b>Message</b>
+              <textarea id="message" class="form-textarea" required placeholder="Hi Sarika, I'd like to connect about..." rows="4"></textarea>
+            </label>
+          </div>
+        </form>
+        <div class="footer">
+          <small>© <span id="year"></span> Sarika Koppisetty • Built with HTML/CSS/JS</small>
+          <div style="margin-top: 4px;">
+            <small class="muted">Tip: Use the project filters + search to quickly tailor for recruiters.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <div class="modal-title">
+          <h3 id="modalTitle">Project</h3>
+          <p id="modalSubtitle">Subtitle</p>
+        </div>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <button class="btn" id="modalCopy" type="button">Copy Summary</button>
+          <button class="btn" id="modalClose" type="button" aria-label="Close modal">Close</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="kvs" id="modalKvs"></div>
+        <div class="kv">
+          <b>Key Contributions</b>
+          <ul id="modalBullets"></ul>
+        </div>
+        <div class="kv">
+          <b>Skills Highlighted</b>
+          <div class="tags" id="modalTags" style="margin-top:8px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
+  
+  <script src="script.js" defer></script>
+</body>
+</html>
