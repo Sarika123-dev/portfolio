@@ -1,1100 +1,358 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Sarika Koppisetty — HCI / UX Research & Interaction Design Portfolio</title>
-  <meta name="description" content="Sarika Koppisetty — Human-Computer Interaction portfolio featuring UX research, AI-driven interaction design, AR navigation, usability testing, and prototyping." />
-  <style>
-    :root{
-      --bg:#0b0f17;
-      --card:#101827;
-      --muted:#8ea0b6;
-      --text:#e9eef5;
-      --line:rgba(255,255,255,.08);
-      --brand:#6ee7ff;
-      --brand2:#a78bfa;
-      --shadow: 0 18px 60px rgba(0,0,0,.35);
-      --radius:18px;
-      --focus: 0 0 0 4px rgba(110,231,255,.18);
-      --max: 1080px;
-    }
-    [data-theme="light"]{
-      --bg:#f7f8fb;
-      --card:#ffffff;
-      --muted:#526173;
-      --text:#0d1622;
-      --line:rgba(15,22,34,.10);
-      --shadow: 0 18px 60px rgba(10,20,35,.12);
-      --brand:#0077ff;
-      --brand2:#7c3aed;
-      --focus: 0 0 0 4px rgba(0,119,255,.14);
-    }
-    *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(900px 450px at 12% 8%, rgba(110,231,255,.14), transparent 60%),
-        radial-gradient(900px 500px at 88% 18%, rgba(167,139,250,.18), transparent 58%),
-        radial-gradient(900px 520px at 50% 110%, rgba(110,231,255,.10), transparent 55%),
-        var(--bg);
-      color:var(--text);
-      line-height:1.55;
-    }
-    a{ color:inherit; text-decoration:none; }
-    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
-      outline:none; box-shadow: var(--focus); border-radius:12px;
-    }
-    /* Layout */
-    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 60px; }
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(12px);
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav-inner{
-      max-width:var(--max); margin:0 auto;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 18px;
-      gap:10px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width: 210px;
-    }
-    .logo{
-      width:36px; height:36px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 10px 24px rgba(0,0,0,.18);
-    }
-    .brand h1{
-      font-size:14px; margin:0; letter-spacing:.2px;
-    }
-    .brand p{
-      margin:0; font-size:12px; color:var(--muted);
-    }
-    .nav-links{
-      display:flex; gap:12px; flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .chip{
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      font-size:13px;
-      color:var(--muted);
-      background: color-mix(in srgb, var(--card) 72%, transparent);
-      transition: transform .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .chip:hover{ transform: translateY(-1px); border-color: color-mix(in srgb, var(--brand) 50%, var(--line)); color: var(--text); }
-    .chip.active{ border-color: color-mix(in srgb, var(--brand) 70%, var(--line)); color: var(--text); }
-    .actions{
-      display:flex; gap:10px; align-items:center;
-      min-width: 180px; justify-content:flex-end;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 78%, transparent);
-      color: var(--text);
-      border-radius: 999px;
-      padding:10px 12px;
-      font-size:13px;
-      cursor:pointer;
-      transition: transform .15s ease, border-color .15s ease;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{ transform: translateY(-1px); border-color: color-mix(in srgb, var(--brand) 60%, var(--line)); }
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      color:#06101d;
-      font-weight: 700;
-    }
-    [data-theme="light"] .btn.primary{ color:#fff; }
-    .btn.icon{ padding:10px 12px; }
-    .btn .dot{
-      width:8px; height:8px; border-radius:99px;
-      background: currentColor; opacity:.6;
-    }
-    /* Hero */
-    .hero{
-      padding:26px 0 12px;
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .card{
-      background: color-mix(in srgb, var(--card) 88%, transparent);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero-main{ padding:22px 22px 18px; position:relative; overflow:hidden; }
-    .hero-main::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(520px 260px at 28% 10%, rgba(110,231,255,.16), transparent 60%),
-                  radial-gradient(520px 260px at 78% 18%, rgba(167,139,250,.20), transparent 62%);
-      pointer-events:none;
-    }
-    .hero-main > *{ position:relative; }
-    .kicker{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      font-size:12px;
-      color:var(--muted);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-    }
-    .kicker b{ color:var(--text); font-weight:700; }
-    .hero h2{
-      font-size:34px; line-height:1.1;
-      margin:14px 0 10px;
-      letter-spacing: -.6px;
-    }
-    .hero p{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:15px;
-      max-width: 62ch;
-    }
-    .hero-cta{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-      margin-top: 10px;
-    }
-    .meta-row{
-      margin-top: 14px;
-      display:flex; flex-wrap:wrap; gap:10px;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .meta-pill{
-      display:inline-flex; gap:8px; align-items:center;
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-    }
-    .hero-side{ padding:18px; display:flex; flex-direction:column; gap:12px; }
-    .mini{
-      padding:14px;
-      display:flex; flex-direction:column; gap:8px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-    }
-    .mini h3{ margin:0; font-size:13px; letter-spacing:.2px; }
-    .mini p{ margin:0; font-size:13px; color:var(--muted); }
-    .mini .stat{
-      margin-top:6px;
-      display:flex; gap:10px; align-items:baseline;
-    }
-    .mini .stat b{ font-size:20px; }
-    .mini .stat span{ font-size:12px; color:var(--muted); }
-    /* Sections */
-    section{ margin-top:22px; }
-    .section-head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-      margin: 24px 0 12px;
-    }
-    .section-head h3{
-      margin:0;
-      font-size:16px;
-      letter-spacing:.2px;
-    }
-    .section-head p{
-      margin:0;
-      font-size:13px;
-      color:var(--muted);
-    }
-    /* Skills */
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .skill-box{ padding:16px; }
-    .skill-box h4{ margin:0 0 10px; font-size:14px; }
-    .tags{ display:flex; flex-wrap:wrap; gap:8px; }
-    .tag{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 74%, transparent);
-      color:var(--muted);
-    }
-    /* Projects */
-    .tools{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-      justify-content:space-between;
-      padding:12px 14px;
-      border-bottom: 1px solid var(--line);
-    }
-    .search{
-      display:flex; gap:10px; align-items:center; flex-wrap:wrap;
-    }
-    .input{
-      display:flex; align-items:center; gap:10px;
-      padding:10px 12px;
-      border:1px solid var(--line);
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-      min-width: 260px;
-    }
-    .input input{
-      border:0; outline:0; background:transparent;
-      color:var(--text); width: 100%;
-      font-size:13px;
-    }
-    .filters{ display:flex; flex-wrap:wrap; gap:8px; }
-    .pill{
-      font-size:12px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-      cursor:pointer;
-      user-select:none;
-      transition: transform .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .pill:hover{ transform: translateY(-1px); border-color: color-mix(in srgb, var(--brand) 50%, var(--line)); color: var(--text); }
-    .pill.on{ border-color: color-mix(in srgb, var(--brand) 70%, var(--line)); color: var(--text); }
-    .proj-grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
-      padding:14px;
-    }
-    .proj{
-      padding:14px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-      display:flex; flex-direction:column; gap:10px;
-      min-height: 210px;
-      transition: transform .15s ease, border-color .15s ease;
-    }
-    .proj:hover{ transform: translateY(-2px); border-color: color-mix(in srgb, var(--brand) 60%, var(--line)); }
-    .proj-top{
-      display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
-    }
-    .proj h4{ margin:0; font-size:14px; line-height:1.25; }
-    .proj .date{ font-size:12px; color:var(--muted); white-space:nowrap; }
-    .proj p{ margin:0; color:var(--muted); font-size:13px; }
-    .proj .badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
-    .badge{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 76%, transparent);
-      color:var(--muted);
-    }
-    .proj .more{
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
-      margin-top: 2px;
-    }
-    .link{
-      font-size:12px; color:var(--text);
-      display:inline-flex; align-items:center; gap:6px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 75%, transparent);
-      cursor:pointer;
-    }
-    .link:hover{ border-color: color-mix(in srgb, var(--brand) 60%, var(--line)); }
-    .muted{ color: var(--muted); font-size:12px; }
-    /* Experience + Education */
-    .timeline{ padding: 14px; display:flex; flex-direction:column; gap:12px; }
-    .row{
-      padding:14px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-    }
-    .row-head{
-      display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
-      flex-wrap:wrap;
-    }
-    .row h4{ margin:0; font-size:14px; }
-    .row .sub{ margin:4px 0 0; color:var(--muted); font-size:13px; }
-    .row ul{
-      margin:10px 0 0; padding-left: 18px;
-      color:var(--muted);
-      font-size:13px;
-    }
-    .row li{ margin: 6px 0; }
-    /* Footer */
-    .footer{
-      margin-top:24px;
-      padding:18px;
-      display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
-      align-items:center;
-    }
-    .footer small{ color:var(--muted); }
-    .toast{
-      position: fixed; left: 50%; transform: translateX(-50%);
-      bottom: 18px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 88%, transparent);
-      box-shadow: var(--shadow);
-      color: var(--text);
-      font-size: 13px;
-      opacity: 0;
-      pointer-events:none;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-    .toast.show{ opacity: 1; transform: translateX(-50%) translateY(-2px); }
-    /* Modal */
-    .modal{
-      position:fixed; inset:0;
-      display:none;
-      align-items:center; justify-content:center;
-      padding:18px;
-      background: rgba(0,0,0,.55);
-      z-index: 100;
-    }
-    .modal.on{ display:flex; }
-    .modal-card{
-      width: min(820px, 100%);
-      max-height: min(82vh, 920px);
-      overflow:auto;
-      border-radius: 20px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 92%, transparent);
-      box-shadow: var(--shadow);
-    }
-    .modal-head{
-      padding:14px 14px 12px;
-      border-bottom:1px solid var(--line);
-      display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
-    }
-    .modal-title{ padding-right: 10px; }
-    .modal-title h3{ margin:0; font-size:16px; }
-    .modal-title p{ margin:6px 0 0; color:var(--muted); font-size:13px; }
-    .modal-body{ padding:14px; display:grid; gap:12px; }
-    .kvs{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .kv{
-      padding:12px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: color-mix(in srgb, var(--card) 70%, transparent);
-    }
-    .kv b{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
-    .kv span{ font-size:13px; color:var(--text); }
-    .modal-body ul{ margin:0; padding-left:18px; color:var(--muted); font-size:13px; }
-    .modal-body li{ margin: 7px 0; }
-    /* Responsive */
-    @media (max-width: 980px){
-      .proj-grid{ grid-template-columns: repeat(2, 1fr); }
-      .hero{ grid-template-columns: 1fr; }
-      .actions{ min-width:auto; }
-      .brand{ min-width:auto; }
-    }
-    @media (max-width: 640px){
-      .proj-grid{ grid-template-columns: 1fr; }
-      .grid-2{ grid-template-columns: 1fr; }
-      .input{ min-width: 100%; }
-      .nav-inner{ align-items:flex-start; }
-      .nav-links{ justify-content:flex-start; }
-      .kvs{ grid-template-columns: 1fr; }
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sarika Koppisetty — HCI & UX Portfolio</title>
+  <style>
+    :root {
+      --bg: #0f0c14;
+      --card: #1a1626;
+      --text: #f0e6f5;
+      --text-muted: #b0a4c2;
+      --brand: #d8b4fe;
+      --brand-accent: #fda4af;
+      --line: rgba(216, 180, 254, 0.1);
+      --glass: rgba(26, 22, 38, 0.85);
+      --shadow: 0 15px 35px rgba(0,0,0,0.4);
+      --input-bg: rgba(216, 180, 254, 0.05);
+    }
+
+    [data-theme="light"] {
+      --bg: #fffafb;
+      --card: #ffffff;
+      --text: #4a3f52;
+      --text-muted: #8b7e95;
+      --brand: #c084fc;
+      --brand-accent: #fb7185;
+      --line: rgba(192, 132, 252, 0.15);
+      --glass: rgba(255, 250, 251, 0.9);
+      --shadow: 0 15px 35px rgba(251, 113, 133, 0.1);
+      --input-bg: #fdf2f4;
+    }
+
+    * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(216, 180, 254, 0.1) 0px, transparent 40%),
+        radial-gradient(at 100% 100%, rgba(253, 164, 175, 0.1) 0px, transparent 40%);
+    }
+
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, var(--brand), var(--brand-accent));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    /* Navigation */
+    .nav {
+      position: sticky; top: 0; z-index: 1000;
+      backdrop-filter: blur(12px); background: var(--glass);
+      border-bottom: 1px solid var(--line); padding: 14px 0;
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    
+    /* Buttons */
+    .btn {
+      padding: 10px 22px; border-radius: 100px; border: 1px solid var(--line);
+      background: var(--card); color: var(--text); cursor: pointer;
+      font-size: 13px; font-weight: 600; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-accent)); color: #fff; border: none; }
+
+    /* Section Titles */
+    .section-title { margin: 60px 0 30px; font-size: 24px; border-left: 4px solid var(--brand); padding-left: 15px; display: flex; align-items: center; gap: 10px; }
+
+    /* Main Content Grid */
+    .content-layout { 
+      display: grid; 
+      grid-template-columns: 1.5fr 1fr; 
+      gap: 40px; 
+      align-items: start;
+      margin-top: 40px;
+    }
+
+    /* Generic Card */
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 24px;
+      padding: 30px; box-shadow: var(--shadow); position: relative;
+    }
+
+    /* Projects Grid */
+    .projects-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+      gap: 24px; 
+    }
+    
+    .proj-card { cursor: pointer; display: flex; flex-direction: column; }
+    .proj-card:hover { border-color: var(--brand-accent); transform: scale(1.02); }
+
+    /* Experience & Skill Styling */
+    .exp-item { margin-bottom: 24px; }
+    .skill-block { background: rgba(255,255,255,0.03); border-radius: 16px; padding: 15px; margin-bottom: 15px; border: 1px solid var(--line); }
+    .date-label { font-size: 11px; color: var(--brand); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* List Icons */
+    .details-list { list-style: none; padding: 0; margin: 10px 0 0; }
+    .details-list li { margin-bottom: 10px; position: relative; padding-left: 20px; font-size: 14px; color: var(--text-muted); }
+    .details-list li::before { content: '🌸'; position: absolute; left: 0; font-size: 10px; top: 4px; }
+
+    /* Tags */
+    .tag { font-size: 11px; padding: 4px 12px; background: var(--line); border-radius: 50px; color: var(--brand); margin: 8px 6px 0 0; display: inline-block; font-weight: 600; }
+
+    /* Contact Section */
+    .contact-container { background: var(--glass); border: 1px solid var(--line); border-radius: 32px; padding: 40px; margin-top: 20px; }
+    .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+    .method-card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    .form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    input, textarea { width: 100%; background: var(--input-bg); border: 1px solid var(--line); padding: 14px; border-radius: 12px; color: var(--text); font-family: inherit; }
+    label { font-size: 11px; font-weight: 700; color: var(--brand-accent); text-transform: uppercase; margin-bottom: 6px; display: block; }
+
+    /* Modal */
+    .modal { position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--bg); width: 100%; max-width: 800px; max-height: 90vh; border-radius: 32px; border: 1px solid var(--brand); padding: 40px; overflow-y: auto; position: relative; }
+    .close-modal { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: var(--brand-accent); }
+
+    @media (max-width: 900px) {
+      .content-layout, .contact-methods, .form-group { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body data-theme="dark">
-  <!-- Sticky Nav -->
-  <header class="nav" aria-label="Top navigation">
-    <div class="nav-inner">
-      <div class="brand" aria-label="Brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>Sarika Koppisetty</h1>
-          <p>HCI • UX Research • Interaction Design</p>
-        </div>
-      </div>
-      <nav class="nav-links" aria-label="Section links">
-        <a class="chip" href="#projects">Projects</a>
-        <a class="chip" href="#skills">Skills</a>
-        <a class="chip" href="#experience">Experience</a>
-        <a class="chip" href="#education">Education</a>
-        <a class="chip" href="#contact">Contact</a>
-      </nav>
-      <div class="actions">
-        <button class="btn icon" id="themeBtn" type="button" aria-label="Toggle theme">
-          <span class="dot" aria-hidden="true"></span>
-          <span id="themeLabel">Dark</span>
-        </button>
-        <button class="btn primary" id="copyEmailBtn" type="button" aria-label="Copy email">
-          Copy Email
-        </button>
-      </div>
-    </div>
-  </header>
-  <main class="wrap">
-    <!-- Hero -->
-    <div class="hero" id="top">
-      <div class="card hero-main">
-        <div class="kicker">
-          <span aria-hidden="true">✨</span>
-          <span><b>Graduate Student</b> • M.S. Human Computer Interaction • Iowa State University</span>
-        </div>
-        <h2>Designing trustworthy, accessible experiences for AI + immersive products.</h2>
-        <p>
-          I specialize in <b>UX research</b>, <b>AI-driven interaction design</b>, and <b>human factors</b>.
-          I use usability testing, heuristic evaluation, and qualitative analysis to turn user insights into
-          clean, high-impact prototypes—especially for AR/VR and safety-critical workflows.
-        </p>
-        <div class="hero-cta">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="#contact">Contact</a>
-          <a class="btn" id="openResumeBtn" href="javascript:void(0)">Resume Highlights</a>
-        </div>
-        <div class="meta-row" aria-label="Quick details">
-          <div class="meta-pill"><span aria-hidden="true">📍</span> Ames, Iowa</div>
-          <div class="meta-pill"><span aria-hidden="true">📧</span> sarika02@iastate.edu</div>
-          <a class="meta-pill" href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">
-            <span aria-hidden="true">🔗</span> linkedin.com/in/sarika02
-          </a>
-        </div>
-      </div>
-      <aside class="card hero-side" aria-label="Highlights">
-        <div class="mini">
-          <h3>Impact</h3>
-          <div class="stat">
-            <b>20%</b><span>improvement in user engagement (AI-driven apps)</span>
-          </div>
-          <p>Research → insights → iterative prototypes → measurable UX improvements.</p>
-        </div>
-        <div class="mini">
-          <h3>Strengths</h3>
-          <p>Usability Testing • Thematic Coding • Affinity Mapping • IA • Accessibility (WCAG AA)</p>
-        </div>
-        <div class="mini">
-          <h3>Focus Areas</h3>
-          <p>AR Navigation • Safety & Privacy UX • Metacognitive Study Tools • Explainable AI UX</p>
-        </div>
-      </aside>
-    </div>
-    <!-- Projects -->
-    <section id="projects" class="card" aria-label="Projects">
-      <div class="tools">
-        <div>
-          <div class="section-head" style="margin:0;">
-            <div>
-              <h3>Selected Projects</h3>
-              <p>Filter by type and open any project for full details.</p>
-            </div>
-          </div>
-        </div>
-        <div class="search" aria-label="Project search and filters">
-          <div class="input" role="search">
-            <span aria-hidden="true">🔎</span>
-            <input id="searchBox" type="search" placeholder="Search projects (e.g., AR, usability, safety, AI)" />
-          </div>
-          <div class="filters" aria-label="Filters">
-            <button class="pill on" data-filter="all" type="button">All</button>
-            <button class="pill" data-filter="arvr" type="button">AR/VR</button>
-            <button class="pill" data-filter="research" type="button">Research</button>
-            <button class="pill" data-filter="prototype" type="button">Prototyping</button>
-            <button class="pill" data-filter="accessibility" type="button">Accessibility</button>
-            <button class="pill" data-filter="privacy" type="button">Safety/Privacy</button>
-          </div>
-        </div>
-      </div>
-      <div class="proj-grid" id="projectGrid"></div>
-    </section>
-    <!-- Skills -->
-    <section id="skills">
-      <div class="section-head">
-        <div>
-          <h3>Skills</h3>
-          <p>Tools + methods I use to ship user-centered, research-backed designs.</p>
-        </div>
-      </div>
-      <div class="grid-2">
-        <div class="card skill-box">
-          <h4>UX Design & Prototyping</h4>
-          <div class="tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Adobe XD</span>
-            <span class="tag">Framer</span>
-            <span class="tag">ProtoPie</span>
-            <span class="tag">Sketch</span>
-            <span class="tag">Illustrator</span>
-            <span class="tag">Canva</span>
-            <span class="tag">Component-based Design Systems</span>
-            <span class="tag">Information Architecture</span>
-            <span class="tag">Data Visualization</span>
-          </div>
-        </div>
-        <div class="card skill-box">
-          <h4>Research Methods</h4>
-          <div class="tags">
-            <span class="tag">Usability Testing</span>
-            <span class="tag">Heuristic Evaluation</span>
-            <span class="tag">Semi-Structured Interviews</span>
-            <span class="tag">Thematic Coding</span>
-            <span class="tag">Affinity Mapping</span>
-            <span class="tag">Ethnographic Research</span>
-            <span class="tag">Persona Development</span>
-            <span class="tag">Journey Mapping</span>
-            <span class="tag">A/B Testing</span>
-          </div>
-        </div>
-        <div class="card skill-box">
-          <h4>AR/VR & Interaction Tech</h4>
-          <div class="tags">
-            <span class="tag">Unity</span>
-            <span class="tag">ARCore</span>
-            <span class="tag">Niantic Lightship ARDK</span>
-            <span class="tag">World Positioning System (WPS)</span>
-            <span class="tag">Spatial Anchors</span>
-            <span class="tag">Immersive UX</span>
-          </div>
-        </div>
-        <div class="card skill-box">
-          <h4>Programming & Development</h4>
-          <div class="tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Python</span>
-            <span class="tag">Java</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Agile/Scrum Collaboration</span>
-            <span class="tag">Unit Testing</span>
-          </div>
-        </div>
-        <div class="card skill-box">
-          <h4>Accessibility</h4>
-          <div class="tags">
-            <span class="tag">WCAG AA</span>
-            <span class="tag">Color Contrast</span>
-            <span class="tag">Readable Typography</span>
-            <span class="tag">Keyboard Navigation</span>
-            <span class="tag">Clear IA & Labels</span>
-          </div>
-        </div>
-        <div class="card skill-box">
-          <h4>AI-Driven UX</h4>
-          <div class="tags">
-            <span class="tag">Explainable AI UX</span>
-            <span class="tag">Behavioral Research</span>
-            <span class="tag">Data-driven Iteration</span>
-            <span class="tag">Human-AI Interaction</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Experience -->
-    <section id="experience" class="card" aria-label="Professional experience">
-      <div class="section-head" style="padding:14px 14px 0;">
-        <div>
-          <h3>Professional Experience</h3>
-          <p>Building usable software + analytics with a user-centered mindset.</p>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="row">
-          <div class="row-head">
-            <div>
-              <h4>Python Developer — Wipro</h4>
-              <div class="sub">Telangana, India</div>
-            </div>
-            <div class="muted">Jun 2023 – Jul 2024</div>
-          </div>
-          <ul>
-            <li>Developed interactive software applications using Python with focus on usability, accessibility, and user-centered design.</li>
-            <li>Optimized user interactions and conducted unit testing to enhance performance and engagement.</li>
-            <li>Collaborated in Agile teams across the full development lifecycle: requirements → build → deployment.</li>
-          </ul>
-        </div>
-        <div class="row">
-          <div class="row-head">
-            <div>
-              <h4>Data Analysis Intern — Origin Tech</h4>
-              <div class="sub">Telangana, India</div>
-            </div>
-            <div class="muted">Feb 2022 – Apr 2022</div>
-          </div>
-          <ul>
-            <li>Analyzed IoT sensor data from Raspberry Pi systems using AI/ML techniques to identify patterns and insights.</li>
-            <li>Built data visualization dashboards to support predictions and data-driven decisions.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-    <!-- Education -->
-    <section id="education" class="card" aria-label="Education">
-      <div class="section-head" style="padding:14px 14px 0;">
-        <div>
-          <h3>Education</h3>
-          <p>Academic focus in Human-Computer Interaction and engineering foundation.</p>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="row">
-          <div class="row-head">
-            <div>
-              <h4>Iowa State University</h4>
-              <div class="sub">Master of Science in Human Computer Interaction • GPA: 4.0/4.0</div>
-            </div>
-            <div class="muted">Aug 2024 – Aug 2026</div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="row-head">
-            <div>
-              <h4>Matrusri Engineering College</h4>
-              <div class="sub">Bachelor of Engineering in Electronics and Communication</div>
-            </div>
-            <div class="muted">Aug 2019 – Jun 2023</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Contact -->
-    <section id="contact" class="card" aria-label="Contact">
-      <div class="section-head" style="padding:14px 14px 0;">
-        <div>
-          <h3>Contact</h3>
-          <p>Want to collaborate or discuss a role? Send a message.</p>
-        </div>
-      </div>
-      <div style="padding:14px; display:grid; gap:12px;">
-        <div class="grid-2">
-          <div class="row" style="margin:0;">
-            <div class="row-head">
-              <div>
-                <h4>Email</h4>
-                <div class="sub"><a href="mailto:sarika02@iastate.edu">sarika02@iastate.edu</a></div>
-              </div>
-              <button class="btn" type="button" id="copyEmailBtn2">Copy</button>
-            </div>
-          </div>
-          <div class="row" style="margin:0;">
-            <div class="row-head">
-              <div>
-                <h4>LinkedIn</h4>
-                <div class="sub"><a href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">linkedin.com/in/sarika02</a></div>
-              </div>
-              <a class="btn" href="http://www.linkedin.com/in/sarika02" target="_blank" rel="noreferrer">Open</a>
-            </div>
-          </div>
-        </div>
-        <form class="row" id="contactForm" style="margin:0;">
-          <div class="row-head">
-            <div>
-              <h4>Quick Message</h4>
-              <div class="sub">This opens your email client with a pre-filled draft.</div>
-            </div>
-            <button class="btn primary" type="submit">Create Email Draft</button>
-          </div>
-          <div style="display:grid; gap:10px; margin-top:12px;">
-            <div class="grid-2">
-              <label class="kv" style="display:block;">
-                <b>Your Name</b>
-                <input id="fromName" required placeholder="Ex: Hiring Manager" style="width:100%; border:1px solid var(--line); background:transparent; color:var(--text); padding:10px 12px; border-radius:12px; outline:0;">
-              </label>
-              <label class="kv" style="display:block;">
-                <b>Your Email (optional)</b>
-                <input id="fromEmail" placeholder="Ex: name@company.com" style="width:100%; border:1px solid var(--line); background:transparent; color:var(--text); padding:10px 12px; border-radius:12px; outline:0;">
-              </label>
-            </div>
-            <label class="kv" style="display:block;">
-              <b>Message</b>
-              <textarea id="message" required placeholder="Hi Sarika, I'd like to connect about..." rows="4"
-                style="width:100%; border:1px solid var(--line); background:transparent; color:var(--text); padding:10px 12px; border-radius:12px; outline:0; resize:vertical;"></textarea>
-            </label>
-          </div>
-        </form>
-        <div class="footer row" style="margin:0;">
-          <small>© <span id="year"></span> Sarika Koppisetty • Built with HTML/CSS/JS</small>
-          <small class="muted">Tip: Use the project filters + search to quickly tailor for recruiters.</small>
-        </div>
-      </div>
-    </section>
-  </main>
-  <!-- Modal -->
-  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Project details">
-    <div class="modal-card" role="document">
-      <div class="modal-head">
-        <div class="modal-title">
-          <h3 id="modalTitle">Project</h3>
-          <p id="modalSubtitle">Subtitle</p>
-        </div>
-        <div style="display:flex; gap:10px; align-items:center;">
-          <button class="btn" id="modalCopy" type="button">Copy Summary</button>
-          <button class="btn" id="modalClose" type="button" aria-label="Close modal">Close</button>
-        </div>
-      </div>
-      <div class="modal-body">
-        <div class="kvs" id="modalKvs"></div>
-        <div class="kv">
-          <b>Key Contributions</b>
-          <ul id="modalBullets"></ul>
-        </div>
-        <div class="kv">
-          <b>Skills Highlighted</b>
-          <div class="tags" id="modalTags" style="margin-top:8px;"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="toast" id="toast" role="status" aria-live="polite">Copied!</div>
-  <script>
-    // ---------- Data ----------
-    const projects = [
-      {
-        id: "campus-connect",
-        title: "Campus Connect: AR Navigation for Students with Mobility Challenges",
-        date: "Aug – Dec 2024",
-        category: ["arvr", "accessibility", "prototype"],
-        oneLiner: "Hands-free AR wayfinding with accessibility-aware routing across campus spaces.",
-        context: "Unity + Niantic Lightship ARDK + WPS to improve accessible navigation across campus.",
-        role: "UX Research • Interaction Design • AR Prototyping",
-        methods: ["User-centered design", "Accessibility-first interaction design", "Iterative prototyping"],
-        tools: ["Unity", "Niantic Lightship ARDK", "ARCore", "WPS", "Spatial Anchors"],
-        bullets: [
-          "Developed AR navigation app in Unity using Niantic Lightship ARDK to provide hands-free, accessible wayfinding for students with mobility constraints across 6 campus buildings, replacing traditional confusing maps with intuitive AR-driven guidance.",
-          "Implemented World Positioning System (WPS) with spatial anchors achieving centimeter-level accuracy using GPS + WiFi + Bluetooth for precise indoor/outdoor positioning; created spatial anchors using latitude/longitude coordinates for object spawning at exact campus locations.",
-          "Designed AR overlays with directional arrows, icons, and interactive place cards providing real-time accessibility data (elevator/ramp status, accessible restrooms, barrier-free routes) via campus facilities API integration.",
-          "Addressed technical challenges including AR drift mitigation in varying lighting conditions, GPS error correction, and persistent anchor placement; integrated voice-guided directions, haptic feedback, emergency route highlighting, and obstacle detection features."
-        ],
-        skills: ["AR interaction design", "Accessible UX", "Information architecture", "Systems thinking", "Unity development", "API integration"]
-      },
-      {
-        id: "safeshare",
-        title: "SafeShare: Real-Time Location Safety Application",
-        date: "Jan – May 2025",
-        category: ["research", "prototype", "privacy"],
-        oneLiner: "Privacy-conscious safety UX for live sharing, SOS, hazard reporting, and trusted circles.",
-        context: "End-to-end UX process: research → IA → prototyping → usability testing → iteration.",
-        role: "UX Research • UX Design • Usability Testing",
-        methods: ["Affinity mapping", "Journey mapping", "Persona development", "Task-based usability testing", "Information architecture"],
-        tools: ["Figma"],
-        bullets: [
-          "Designed privacy-conscious safety app enabling live location sharing, SOS alerts, hazard reporting, and trusted circle management through comprehensive user research including affinity mapping, journey mapping, persona development, and information architecture design.",
-          "Conducted user research to identify key safety workflows and pain points; created low- and high-fidelity interactive prototypes in Figma featuring intuitive emergency interactions and granular privacy controls.",
-          "Performed task-based usability testing with 4 participants in 10-15 minute sessions, achieving average usability scores of 5.0-6.4/7.0 across key tasks including SOS activation, location sharing, and hazard reporting.",
-          "Iteratively improved SOS clarity, onboarding flows, hazard reporting interface, and alert settings placement based on testing insights; focused on balancing user safety needs with privacy-conscious design and control over location data sharing."
-        ],
-        skills: ["Safety + privacy UX", "Usability testing", "Interaction design", "Iterative design", "Research synthesis"]
-      },
-      {
-        id: "thinkplan",
-        title: "ThinkPlan: Metacognitive Digital Planner",
-        date: "Aug – Dec 2024",
-        category: ["research", "prototype", "accessibility"],
-        oneLiner: "Student planner integrating metacognitive study strategies into daily workflows.",
-        context: "Qual research + validated coding + A/B onboarding test to improve discoverability and reflection.",
-        role: "UX Research • Prototyping • Accessibility",
-        methods: ["Semi-structured interviews (n=6)", "Thematic coding (AI-assisted + human validation)", "A/B testing", "Qualitative analysis"],
-        tools: ["Figma", "Design system components"],
-        bullets: [
-          "Designed student-focused digital planner integrating metacognitive study strategies into daily routines; conducted semi-structured interviews (n=6) and performed AI-assisted thematic coding with human validation to ensure research rigor.",
-          "Identified key behavioral patterns through qualitative analysis: multi-tool juggling (students using 3-5 different apps), reactive planning (last-minute scheduling), and routine anchors (dependency on existing habits for task completion).",
-          "Developed low- and high-fidelity prototypes in Figma using component-based design system ensuring consistency and scalability; implemented WCAG AA accessibility compliance for color contrast and readability.",
-          "Led A/B usability testing comparing tutorial vs. no-tutorial onboarding conditions; iteratively improved task discoverability, reflection entry points, and navigation clarity based on user feedback, achieving high ratings in usability, efficiency, and dependability metrics."
-        ],
-        skills: ["Qualitative research", "Design systems", "Accessibility (WCAG AA)", "A/B testing", "Behavioral analysis"]
-      },
-      {
-        id: "pantrypal",
-        title: "PantryPal: Smart Shared Pantry Management App",
-        date: "Aug – Dec 2024",
-        category: ["research", "prototype", "privacy"],
-        oneLiner: "Shared pantry UX to reduce waste with scanning, expiry tracking, and explainable meal suggestions.",
-        context: "Designed for shared households: inventory transparency, coordination, and fair usage.",
-        role: "UX Research • Prototyping • AI-Driven UX",
-        methods: ["Semi-structured interviews (n=6)", "Task-based usability testing (n=5)", "Iterative refinement", "Pain point analysis"],
-        tools: ["Figma"],
-        bullets: [
-          "Designed mobile app addressing food waste in shared households through semi-structured interviews (n=6) identifying key pain points: low pantry visibility, duplicate purchases, weak roommate coordination, and unclear food ownership.",
-          "Developed mid-to-high fidelity interactive prototype in Figma featuring barcode scanning for quick item entry, color-coded expiry tracking (green/yellow/red), real-time shared inventory dashboard, and customizable reminder systems.",
-          "Implemented AI-based meal suggestions using available ingredients, shared governance roles (Owner/Member) for household management, fairness tracking for shared expenses, and lightweight activity logs to reduce cognitive load.",
-          "Conducted task-based usability testing (n=5) and iteratively improved reminder discoverability, bulk selection clarity, and shared feature transparency; emphasized explainable AI recommendations and sustainable behavior support."
-        ],
-        skills: ["Behavior change UX", "Explainable AI UX", "Prototype iteration", "Information architecture", "Shared system design"]
-      },
-      {
-        id: "budgeting-research",
-        title: "Digital Budgeting Tools: International Student UX Research",
-        date: "Jan – May 2025",
-        category: ["research"],
-        oneLiner: "Deep qualitative research on budgeting behavior, trust, and cultural needs in U.S. finance apps.",
-        context: "45-minute interviews with international grad students to uncover barriers and design implications.",
-        role: "UX Research • Synthesis • Design Strategy",
-        methods: ["Semi-structured interviews (n=6)", "Systematic thematic coding", "Insight-to-implication synthesis", "Cross-cultural research"],
-        tools: ["Thematic coding", "Research synthesis artifacts"],
-        bullets: [
-          "Led qualitative research exploring financial management behaviors of international graduate students in the U.S. through 45-minute semi-structured interviews with diverse participants (n=6; Master's/PhD students representing 4 nationalities).",
-          "Performed systematic thematic coding revealing critical themes: currency confusion during transactions, tax complexity and filing anxiety, privacy concerns with financial data, trust barriers toward unfamiliar U.S. banking apps, and desire for simplicity with cultural customization.",
-          "Synthesized findings into actionable design implications emphasizing emotional budgeting support (addressing financial stress), low-friction tracking (minimal manual entry), reflective financial insights (learning-focused feedback), and minimal-permission app architecture.",
-          "Proposed student-centered budgeting tool concepts prioritizing transparency, cultural sensitivity, and trust-building features to improve usability and adoption among international student populations."
-        ],
-        skills: ["Research synthesis", "Human factors", "Trust & privacy", "Service design thinking", "Cross-cultural UX"]
-      },
-      {
-        id: "stronger-together",
-        title: "Stronger Together: Peer Support for Student Mental Wellness",
-        date: "Aug – Dec 2024",
-        category: ["research", "prototype"],
-        oneLiner: "Peer-led support concept with gamified "Wellness Quest" for daily habits and connection.",
-        context: "Human-centered design to reduce stigma and increase engagement through lightweight routines.",
-        role: "HCD • Prototyping • Research",
-        methods: ["Ethnographic interviews", "Affinity mapping", "Personas", "Design sprints", "Journey mapping"],
-        tools: ["Figma"],
-        bullets: [
-          "Led human-centered design project addressing mental health stigma through peer-led support model and gamified prototype 'Wellness Quest' encouraging daily mental health practices and peer connection.",
-          "Conducted ethnographic interviews, affinity mapping, persona development, and design sprints identifying user needs and barriers; designed low-to-high fidelity prototype with gamification (badges, streaks), reflection journals, and flexible wellness challenges.",
-          "Demonstrated increased engagement through bite-sized daily tasks (5-10 minutes), progressive achievement systems, and social accountability features; findings showed users preferred informal peer support over formal counseling as initial intervention.",
-          "Focused on reducing mental health stigma by creating approachable, non-clinical interface with peer connection features and community-building elements."
-        ],
-        skills: ["Behavioral design", "Gamification", "HCD process", "Prototyping", "Social features design"]
-      }
-    ];
-    // ---------- Helpers ----------
-    const $ = (sel, root=document) => root.querySelector(sel);
-    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
-    function toast(msg="Copied!") {
-      const t = $("#toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 1600);
-    }
-    async function copyToClipboard(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        toast("Copied to clipboard");
-      }catch(e){
-        // Fallback
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        toast("Copied to clipboard");
-      }
-    }
-    // ---------- Render Projects ----------
-    const grid = $("#projectGrid");
-    let activeFilter = "all";
-    function renderProjects(){
-      const q = $("#searchBox").value.trim().toLowerCase();
-      const filtered = projects.filter(p => {
-        const matchesFilter = activeFilter === "all" ? true : p.category.includes(activeFilter);
-        const hay = [
-          p.title, p.oneLiner, p.context, p.role,
-          ...(p.methods||[]), ...(p.tools||[]), ...(p.skills||[])
-        ].join(" ").toLowerCase();
-        const matchesSearch = q ? hay.includes(q) : true;
-        return matchesFilter && matchesSearch;
-      });
-      grid.innerHTML = filtered.map(p => `
-        <article class="proj" data-id="${p.id}">
-          <div class="proj-top">
-            <h4>${p.title}</h4>
-            <div class="date">${p.date}</div>
-          </div>
-          <p>${p.oneLiner}</p>
-          <div class="badges" aria-label="Project tags">
-            ${(p.category || []).slice(0,4).map(c => `<span class="badge">${labelFor(c)}</span>`).join("")}
-          </div>
-          <div class="more">
-            <button class="link" type="button" data-open="${p.id}">
-              Open Case Summary <span aria-hidden="true">→</span>
-            </button>
-            <span class="muted">${(p.tools||[]).slice(0,2).join(" • ")}</span>
-          </div>
-        </article>
-      `).join("");
-      // attach open handlers
-      $$("[data-open]").forEach(btn => btn.addEventListener("click", () => openModal(btn.dataset.open)));
-    }
-    function labelFor(key){
-      const map = {
-        all:"All",
-        arvr:"AR/VR",
-        research:"Research",
-        prototype:"Prototyping",
-        accessibility:"Accessibility",
-        privacy:"Safety/Privacy"
-      };
-      return map[key] || key;
-    }
-    // ---------- Modal ----------
-    const modal = $("#modal");
-    const modalTitle = $("#modalTitle");
-    const modalSubtitle = $("#modalSubtitle");
-    const modalBullets = $("#modalBullets");
-    const modalKvs = $("#modalKvs");
-    const modalTags = $("#modalTags");
-    let currentProject = null;
-    function openModal(id){
-      const p = projects.find(x => x.id === id);
-      if(!p) return;
-      currentProject = p;
-      modalTitle.textContent = p.title;
-      modalSubtitle.textContent = `${p.date} • ${p.role}`;
-      modalKvs.innerHTML = `
-        <div class="kv"><b>Context</b><span>${p.context}</span></div>
-        <div class="kv"><b>Methods</b><span>${(p.methods||[]).join(", ") || "—"}</span></div>
-        <div class="kv"><b>Tools</b><span>${(p.tools||[]).join(", ") || "—"}</span></div>
-        <div class="kv"><b>Category</b><span>${(p.category||[]).map(labelFor).join(" • ")}</span></div>
-      `;
-      modalBullets.innerHTML = (p.bullets||[]).map(b => `<li>${b}</li>`).join("");
-      modalTags.innerHTML = (p.skills||[]).map(s => `<span class="tag">${s}</span>`).join("");
-      modal.classList.add("on");
-      document.body.style.overflow = "hidden";
-      $("#modalClose").focus();
-    }
-    function closeModal(){
-      modal.classList.remove("on");
-      document.body.style.overflow = "";
-      currentProject = null;
-    }
-    $("#modalClose").addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
-    document.addEventListener("keydown", (e) => { if(e.key === "Escape" && modal.classList.contains("on")) closeModal(); });
-    $("#modalCopy").addEventListener("click", () => {
-      if(!currentProject) {
-        // Handle resume highlights case
-        const resumeText = `Resume Highlights
-HCI • UX Research • Interaction Design • AR/VR
 
-Summary: Graduate student specializing in HCI with experience in UX research, AI-driven interaction design, and human factors.
+  <nav class="nav">
+    <div class="wrap nav-inner">
+      <h2 style="margin:0; font-size: 20px;" class="gradient-text">Sarika.K</h2>
+      <div style="display: flex; gap: 12px;">
+        <button id="themeBtn" class="btn">✨ Theme</button>
+        <a href="#contact" class="btn primary">Work With Me</a>
+      </div>
+    </div>
+  </nav>
 
-Key Strengths:
-- Usability testing, heuristic evaluation, thematic coding
-- Accessibility (WCAG AA), iterative prototyping
-- AR/VR: Unity, ARCore, Niantic Lightship ARDK, WPS
-- Development: HTML/CSS/JS, Python, Java, SQL
+  <main class="wrap">
+    <header style="padding: 80px 0 40px; text-align: center;">
+      <div class="tag">M.S. Human-Computer Interaction</div>
+      <h1 style="font-size: clamp(36px, 6vw, 60px); margin: 15px 0;">Sarika <span class="gradient-text">Koppisetty</span></h1>
+      <p style="color: var(--text-muted); font-size: 18px; max-width: 750px; margin: 0 auto; line-height: 1.5;">
+        UX Researcher & HCI Specialist specializing in AI-driven Interaction Design and human factors. Currently maintaining a 4.0/4.0 GPA at Iowa State University.
+      </p>
+    </header>
 
-Highlights:
-- Designed AR navigation experiences to support accessible wayfinding
-- Built privacy-conscious safety UX with usability testing and iteration
-- Conducted qualitative research and synthesized insights into design implications
-- Created component-based design systems and ensured accessible UI patterns`;
-        copyToClipboard(resumeText);
-        return;
-      }
-      
-      const p = currentProject;
-      const summary =
-`${p.title} (${p.date})
-Role: ${p.role}
-Summary: ${p.oneLiner}
-Key contributions:
-- ${(p.bullets||[]).join("\n- ")}
-Methods: ${(p.methods||[]).join(", ")}
-Tools: ${(p.tools||[]).join(", ")}
-Skills: ${(p.skills||[]).join(", ")}`;
-      copyToClipboard(summary);
-    });
-    // ---------- Filters + Search ----------
-    $$(".pill").forEach(btn => {
-      btn.addEventListener("click", () => {
-        $$(".pill").forEach(b => b.classList.remove("on"));
-        btn.classList.add("on");
-        activeFilter = btn.dataset.filter;
-        renderProjects();
-      });
-    });
-    $("#searchBox").addEventListener("input", renderProjects);
-    // ---------- Theme Toggle ----------
-    const themeBtn = $("#themeBtn");
-    const themeLabel = $("#themeLabel");
-    function setTheme(theme){
-      document.body.setAttribute("data-theme", theme);
-      themeLabel.textContent = theme === "light" ? "Light" : "Dark";
-      localStorage.setItem("theme", theme);
-    }
-    themeBtn.addEventListener("click", () => {
-      const current = document.body.getAttribute("data-theme") || "dark";
-      setTheme(current === "dark" ? "light" : "dark");
-    });
-    // ---------- Copy Email ----------
-    const email = "sarika02@iastate.edu";
-    $("#copyEmailBtn").addEventListener("click", () => copyToClipboard(email));
-    $("#copyEmailBtn2").addEventListener("click", () => copyToClipboard(email));
-    // ---------- Resume Highlights (quick modal) ----------
-    $("#openResumeBtn").addEventListener("click", () => {
-      // Reuse modal for a resume-style snapshot
-      currentProject = null;
-      modalTitle.textContent = "Resume Highlights";
-      modalSubtitle.textContent = "HCI • UX Research • Interaction Design • AR/VR";
-      modalKvs.innerHTML = `
-        <div class="kv"><b>Summary</b><span>Graduate student specializing in HCI with experience in UX research, AI-driven interaction design, and human factors.</span></div>
-        <div class="kv"><b>Strengths</b><span>Usability testing, heuristic evaluation, thematic coding, accessibility (WCAG AA), iterative prototyping.</span></div>
-        <div class="kv"><b>AR/VR</b><span>Unity, ARCore, Niantic Lightship ARDK, WPS, spatial anchors, immersive UX.</span></div>
-        <div class="kv"><b>Development</b><span>HTML/CSS/JS, Python, Java, SQL; Agile collaboration; unit testing.</span></div>
-      `;
-      modalBullets.innerHTML = `
-        <li>Designed AR navigation experiences to support accessible wayfinding.</li>
-        <li>Built privacy-conscious safety UX with usability testing and iteration.</li>
-        <li>Conducted qualitative research and synthesized insights into design implications.</li>
-        <li>Created component-based design systems and ensured accessible UI patterns.</li>
-      `;
-      modalTags.innerHTML = ["UX Research","Interaction Design","Accessibility","AR/VR","Human Factors","Prototyping"]
-        .map(s => `<span class="tag">${s}</span>`).join("");
-      modal.classList.add("on");
-      document.body.style.overflow = "hidden";
-      $("#modalClose").focus();
-    });
-    // ---------- Contact Form (mailto draft) ----------
-    $("#contactForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = $("#fromName").value.trim();
-      const fromEmail = $("#fromEmail").value.trim();
-      const msg = $("#message").value.trim();
-      const subject = encodeURIComponent("Hello Sarika — Portfolio Contact");
-      const body = encodeURIComponent(
-`Hi Sarika,
+    <section id="projects">
+      <h2 class="section-title">Selected <span class="gradient-text">Projects</span></h2>
+      <div class="projects-grid" id="projectGrid"></div>
+    </section>
 
-My name is ${name}${fromEmail ? ` (${fromEmail})` : ""}. 
+    <div class="content-layout">
+      <section>
+        <h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
+        <div class="card exp-item">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start;">
+            <div>
+              <h4 style="margin:0;">Python Developer</h4>
+              <div style="font-size:13px; color:var(--brand); margin-top: 4px;">Wipro | Telangana, India</div>
+            </div>
+            <span class="date-label">Jun 2023 – Jul 2024</span>
+          </div>
+          <ul class="details-list">
+            <li>Developed interactive applications using Python with a focus on usability and WCAG accessibility.</li>
+            <li>Optimized user interactions and unit testing, improving application performance.</li>
+            <li>Collaborated in Agile/Scrum environments for end-to-end software deployment.</li>
+          </ul>
+        </div>
 
-${msg}
+        <div class="card exp-item">
+          <div style="display:flex; justify-content:space-between; align-items: flex-start;">
+            <div>
+              <h4 style="margin:0;">Data Analysis Intern</h4>
+              <div style="font-size:13px; color:var(--brand); margin-top: 4px;">Origin Tech | Telangana, India</div>
+            </div>
+            <span class="date-label">Feb 2022 – Apr 2022</span>
+          </div>
+          <ul class="details-list">
+            <li>Analyzed IoT sensor data via AI/ML techniques to identify user behavior patterns.</li>
+            <li>Developed data visualization dashboards to support predictive decision-making.</li>
+          </ul>
+        </div>
+      </section>
 
-Best regards,
-${name}`
-      );
-      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-      toast("Opening email draft…");
-    });
-    // ---------- Nav active highlight ----------
-    const navChips = $$(".nav-links .chip");
-    const sections = ["projects","skills","experience","education","contact"].map(id => document.getElementById(id));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          navChips.forEach(a => a.classList.remove("active"));
-          const a = navChips.find(x => x.getAttribute("href") === `#${entry.target.id}`);
-          if(a) a.classList.add("active");
-        }
-      });
-    }, { rootMargin: "-55% 0px -40% 0px", threshold: 0.01 });
-    sections.forEach(s => s && observer.observe(s));
-    // ---------- Init ----------
-    $("#year").textContent = new Date().getFullYear();
-    setTheme(localStorage.getItem("theme") || "dark");
-    renderProjects();
-  </script>
+      <section>
+        <h2 class="section-title">Skills & <span class="gradient-text">Education</span></h2>
+        <div class="card">
+          <div class="skill-block">
+            <label>Design & Prototyping</label>
+            <div style="font-size: 13px;">Figma, Adobe XD, Protopie, Storyboarding, Information Architecture</div>
+          </div>
+          
+          <div class="skill-block">
+            <label>Research Methods</label>
+            <div style="font-size: 13px;">Usability Testing, Thematic Coding, Affinity Mapping, A/B Testing, Ethnography</div>
+          </div>
+
+          <div class="skill-block">
+            <label>Development</label>
+            <div style="font-size: 13px;">Python, Java, JavaScript, SQL, Unity, ARCore, Niantic Lightship</div>
+          </div>
+
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line);">
+            <h4 style="margin:0 0 10px 0;">Education</h4>
+            <div style="margin-bottom:15px;">
+              <div style="font-weight:700; font-size:14px;">Iowa State University</div>
+              <div style="font-size:12px; color:var(--text-muted);">M.S. in HCI (2024–2026)</div>
+            </div>
+            <div>
+              <div style="font-weight:700; font-size:14px;">Matrusri Engineering College</div>
+              <div style="font-size:12px; color:var(--text-muted);">B.E. in Electronics (2019–2023)</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="contact-section" id="contact">
+      <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
+      <div class="contact-container">
+        <div class="contact-methods">
+          <div class="method-card">
+            <div><label>Email</label><div style="font-weight:600;">sarika02@iastate.edu</div></div>
+            <button class="btn" onclick="copyEmail()">Copy</button>
+          </div>
+          <div class="method-card">
+            <div><label>LinkedIn</label><div style="font-weight:600;">in/sarika02</div></div>
+            <a href="https://linkedin.com/in/sarika02" target="_blank" class="btn">Open</a>
+          </div>
+        </div>
+        
+        <div class="card" style="background: rgba(255,255,255,0.02);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px; margin-bottom:20px;">
+            <h3 style="margin:0;">Quick Message</h3>
+            <button class="btn primary" onclick="createEmailDraft()">Create Email Draft</button>
+          </div>
+          <div class="form-group">
+            <div><label>Your Name</label><input type="text" id="nameIn" placeholder="Ex: Hiring Manager"></div>
+            <div><label>Your Email</label><input type="email" id="emailIn" placeholder="Ex: name@company.com"></div>
+          </div>
+          <label>Message</label>
+          <textarea id="msgIn" rows="4" placeholder="Hi Sarika, I'd like to discuss..."></textarea>
+        </div>
+
+        <div style="margin-top:40px; padding-top:20px; border-top:1px solid var(--line); display:flex; justify-content:space-between; font-size:12px; color:var(--text-muted);">
+          <span>© 2026 Sarika Koppisetty</span>
+          <span>Ames, Iowa</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">✕</span>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const projects = [
+      {
+        title: "Campus Connect: AR Navigation",
+        date: "2024",
+        oneLiner: "Centimeter-level AR wayfinding for students with mobility constraints.",
+        bullets: [
+          "Developed in Unity using Niantic Lightship ARDK and WPS.",
+          "Integrated facilities API for real-time accessibility data (ramps/elevators).",
+          "Implemented voice-guided navigation and haptic feedback."
+        ],
+        tags: ["Unity", "AR", "Accessibility"]
+      },
+      {
+        title: "SafeShare: Safety UX",
+        date: "2025",
+        oneLiner: "Privacy-conscious safety app for live location sharing and SOS alerts.",
+        bullets: [
+          "Conducted affinity mapping and journey mapping to design safety workflows.",
+          "Achieved usability satisfaction scores of 6.4/7.0 in task testing.",
+          "Designed high-fidelity prototypes in Figma with granular privacy controls."
+        ],
+        tags: ["Figma", "UX Research", "Privacy"]
+      },
+      {
+        title: "ThinkPlan: Metacognitive Planner",
+        date: "2024",
+        oneLiner: "Digital planner integrating metacognitive study strategies.",
+        bullets: [
+          "Performed AI-assisted thematic coding from semi-structured interviews.",
+          "Identified key patterns like 'multi-tool juggling' and 'reactive planning'.",
+          "Implemented WCAG AA compliance for color contrast and readability."
+        ],
+        tags: ["HCI", "A/B Testing", "Thematic Coding"]
+      },
+      {
+        title: "PantryPal: Shared Management",
+        date: "2024",
+        oneLiner: "AI-driven app addressing food waste in shared households.",
+        bullets: [
+          "Featured barcode scanning and color-coded expiry tracking.",
+          "Implemented AI-based meal suggestions using available ingredients.",
+          "Reduced cognitive load with fairness tracking for shared expenses."
+        ],
+        tags: ["AI UX", "Prototyping"]
+      }
+    ];
+
+    function renderProjects() {
+      const grid = document.getElementById('projectGrid');
+      projects.forEach((p, i) => {
+        grid.innerHTML += `
+          <div class="card proj-card" onclick="openModal(${i})">
+            <span class="date-label">${p.date}</span>
+            <h4 style="margin:10px 0; font-size:18px;">${p.title}</h4>
+            <p style="font-size:13px; color:var(--text-muted); flex-grow:1;">${p.oneLiner}</p>
+            <div>${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+          </div>`;
+      });
+    }
+
+    function openModal(i) {
+      const p = projects[i];
+      document.getElementById('modalBody').innerHTML = `
+        <span class="date-label">${p.date}</span>
+        <h2 class="gradient-text" style="margin-top:10px;">${p.title}</h2>
+        <p style="font-weight:600; font-size: 16px;">${p.oneLiner}</p>
+        <ul class="details-list" style="margin-top:20px;">
+          ${p.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+      `;
+      document.getElementById('modal').classList.add('active');
+    }
+
+    function closeModal() { document.getElementById('modal').classList.remove('active'); }
+    function copyEmail() { navigator.clipboard.writeText('sarika02@iastate.edu'); alert('Email copied!'); }
+    function createEmailDraft() {
+      const name = document.getElementById('nameIn').value;
+      const msg = document.getElementById('msgIn').value;
+      window.location.href = `mailto:sarika02@iastate.edu?subject=Portfolio Inquiry from ${name}&body=${encodeURIComponent(msg)}`;
+    }
+
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme');
+      document.body.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+    });
+
+    renderProjects();
+  </script>
 </body>
+</html>
